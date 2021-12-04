@@ -10,15 +10,20 @@ fun getEnum(string: String): Command {
     return Command.values().first { it.name.lowercase() == string }
 }
 
-fun main() {
+fun getInputs(): List<Pair<Command, Int>> {
     val inputString = ChristmasAdventure2.getInputString()
-    val inputs = inputString.trim().lines()
+
+    return inputString.trim().lines()
         .map {
             val list = it.split(" ")
             val command = getEnum(list[0])
             val stepSize = list[1].toInt()
             command to stepSize
         }
+}
+
+fun main() {
+    val inputs = getInputs()
 
     val sumPair = inputs
         .groupBy { it.first }
