@@ -1,6 +1,6 @@
 package solutions
 
-import inputs.day1.ChristmasAdventure1
+import inputs.ChristmasAdventure1
 
 fun main(args: Array<String>){
     val inputs = ChristmasAdventure1.getInputs()
