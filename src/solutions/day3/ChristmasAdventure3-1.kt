@@ -16,18 +16,22 @@ fun main() {
     val inputs = getInputs()
     val count = inputs.count()
     val digits = inputs.first().count()
-
     val decimalMaxOfNDigits = generateSequence { 1 }.take(digits).toList().toDecimal()
 
-    val gammaRate = (0 until digits).toList().map { nth ->
-        val nthDigits = inputs.map { it[nth] }
-        val onesCount = nthDigits.count { it == 1 }
-        if (onesCount * 2 >= count) 1 else 0
-    }.toDecimal()
-
+    val gammaRate = getGammaRate(digits, inputs, count).toDecimal()
     val epsilonRate = decimalMaxOfNDigits - gammaRate
 
     println(gammaRate * epsilonRate)
+}
+
+fun getGammaRate(
+    digits: Int,
+    inputs: List<List<Int>>,
+    count: Int
+) = (0 until digits).toList().map { nth ->
+    val nthDigits = inputs.map { it[nth] }
+    val onesCount = nthDigits.count { it == 1 }
+    if (onesCount * 2 >= count) 1 else 0
 }
 
 fun List<Int>.toDecimal(): Int {
